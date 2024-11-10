@@ -9,20 +9,26 @@
 /* Begin PBXBuildFile section */
 		E173BFD52CD77E7A00B56507 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFD42CD77E7A00B56507 /* AppDelegate.swift */; };
 		E173BFD72CD77E7A00B56507 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFD62CD77E7A00B56507 /* SceneDelegate.swift */; };
-		E173BFD92CD77E7A00B56507 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFD82CD77E7A00B56507 /* ViewController.swift */; };
+		E173BFD92CD77E7A00B56507 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFD82CD77E7A00B56507 /* SearchViewController.swift */; };
 		E173BFDE2CD77E7B00B56507 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E173BFDD2CD77E7B00B56507 /* Assets.xcassets */; };
 		E173BFE12CD77E7B00B56507 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E173BFDF2CD77E7B00B56507 /* LaunchScreen.storyboard */; };
 		E173BFEA2CD77EAD00B56507 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E173BFE92CD77EAD00B56507 /* SnapKit */; };
+		E173BFEE2CD7950C00B56507 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFED2CD7950C00B56507 /* HistoryViewController.swift */; };
+		E173BFF02CD7986F00B56507 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFEF2CD7986F00B56507 /* AlbumCollectionViewCell.swift */; };
+		E173BFF22CD7988F00B56507 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFF12CD7988F00B56507 /* AlbumViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E173BFD12CD77E7A00B56507 /* iTunesCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E173BFD42CD77E7A00B56507 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E173BFD62CD77E7A00B56507 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E173BFD82CD77E7A00B56507 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E173BFD82CD77E7A00B56507 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E173BFDD2CD77E7B00B56507 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E173BFE02CD77E7B00B56507 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E173BFE22CD77E7B00B56507 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E173BFED2CD7950C00B56507 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		E173BFEF2CD7986F00B56507 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		E173BFF12CD7988F00B56507 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +64,10 @@
 			children = (
 				E173BFD42CD77E7A00B56507 /* AppDelegate.swift */,
 				E173BFD62CD77E7A00B56507 /* SceneDelegate.swift */,
-				E173BFD82CD77E7A00B56507 /* ViewController.swift */,
+				E173BFD82CD77E7A00B56507 /* SearchViewController.swift */,
+				E173BFEF2CD7986F00B56507 /* AlbumCollectionViewCell.swift */,
+				E173BFF12CD7988F00B56507 /* AlbumViewController.swift */,
+				E173BFED2CD7950C00B56507 /* HistoryViewController.swift */,
 				E173BFDD2CD77E7B00B56507 /* Assets.xcassets */,
 				E173BFDF2CD77E7B00B56507 /* LaunchScreen.storyboard */,
 				E173BFE22CD77E7B00B56507 /* Info.plist */,
@@ -142,9 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E173BFD92CD77E7A00B56507 /* ViewController.swift in Sources */,
+				E173BFF02CD7986F00B56507 /* AlbumCollectionViewCell.swift in Sources */,
+				E173BFD92CD77E7A00B56507 /* SearchViewController.swift in Sources */,
 				E173BFD52CD77E7A00B56507 /* AppDelegate.swift in Sources */,
 				E173BFD72CD77E7A00B56507 /* SceneDelegate.swift in Sources */,
+				E173BFEE2CD7950C00B56507 /* HistoryViewController.swift in Sources */,
+				E173BFF22CD7988F00B56507 /* AlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

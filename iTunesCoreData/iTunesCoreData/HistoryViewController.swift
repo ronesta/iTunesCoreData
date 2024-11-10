@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HistoryViewController.swift
 //  iTunesCoreData
 //
 //  Created by Ибрагим Габибли on 03.11.2024.
@@ -7,13 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBrown
+
+        // Do any additional setup after loading the view.
     }
-
-
 }
-
