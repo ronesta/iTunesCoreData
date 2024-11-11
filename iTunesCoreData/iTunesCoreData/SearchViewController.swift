@@ -12,12 +12,14 @@ class SearchViewController: UIViewController {
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "Search Albums"
+        searchBar.sizeToFit()
         return searchBar
     }()
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 15, height: 190)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 15, height: 130)
         layout.minimumLineSpacing = 7
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets.zero
@@ -34,40 +36,58 @@ class SearchViewController: UIViewController {
         return collectionView
     }()
 
+    var albums = [Album]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        fetchAlbums()
     }
 
     private func setupViews() {
         view.backgroundColor = .systemGray6
         view.addSubview(searchBar)
         view.addSubview(collectionView)
+        navigationItem.titleView = searchBar
 
+        searchBar.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        searchBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-        }
-
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
         }
     }
 
-    private func fetchAlbums() {
+    private func searchAlbums(with term: String) {
+        NetworkManager.shared.fetchAlbums(albumName: term) { [weak self] result in
+            switch result {
+            case .success(let albums):
+                self?.albums = albums
+                print("Successfully loaded \(albums.count) albums.")
+            case .failure(let error):
+                print("Failed to load images with error: \(error.localizedDescription)")
+                self?.showErrorAlert(message: error.localizedDescription)
+            }
+
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+
+    func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error Fetching Albums", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        albums.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -77,6 +97,18 @@ extension SearchViewController: UICollectionViewDataSource {
             for: indexPath)
                 as? AlbumCollectionViewCell else {
             return UICollectionViewCell()
+        }
+
+        let album = albums[indexPath.item]
+        let UrlString = album.artworkUrl100
+
+        ImageLoader.shared.loadImage(from: UrlString) { loadedImage in
+            DispatchQueue.main.async {
+                guard let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell  else {
+                    return
+                }
+                cell.configure(with: album, image: loadedImage)
+            }
         }
         return cell
     }
@@ -88,5 +120,14 @@ extension SearchViewController: UICollectionViewDelegate {
 
         let albumViewController = AlbumViewController()
         navigationController?.pushViewController(albumViewController, animated: true)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchTerm = searchBar.text, !searchTerm.isEmpty else { return }
+        searchAlbums(with: searchTerm)
     }
 }
