@@ -119,6 +119,8 @@ extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let albumViewController = AlbumViewController()
+        let album = albums[indexPath.item]
+        albumViewController.album = album
         navigationController?.pushViewController(albumViewController, animated: true)
     }
 }
