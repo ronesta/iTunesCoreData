@@ -60,7 +60,7 @@ class SearchViewController: UIViewController {
         }
     }
 
-    private func searchAlbums(with term: String) {
+    func searchAlbums(with term: String) {
         NetworkManager.shared.fetchAlbums(albumName: term) { [weak self] result in
             switch result {
             case .success(let albums):
@@ -129,7 +129,10 @@ extension SearchViewController: UICollectionViewDelegate {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        guard let searchTerm = searchBar.text, !searchTerm.isEmpty else { return }
+        guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
+            return
+        }
+        SearchHistoryManager.shared.saveSearchTerm(searchTerm)
         searchAlbums(with: searchTerm)
     }
 }

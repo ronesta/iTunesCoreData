@@ -13,7 +13,7 @@
 		E173BFDE2CD77E7B00B56507 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E173BFDD2CD77E7B00B56507 /* Assets.xcassets */; };
 		E173BFE12CD77E7B00B56507 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E173BFDF2CD77E7B00B56507 /* LaunchScreen.storyboard */; };
 		E173BFEA2CD77EAD00B56507 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E173BFE92CD77EAD00B56507 /* SnapKit */; };
-		E173BFEE2CD7950C00B56507 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFED2CD7950C00B56507 /* HistoryViewController.swift */; };
+		E173BFEE2CD7950C00B56507 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFED2CD7950C00B56507 /* SearchHistoryViewController.swift */; };
 		E173BFF02CD7986F00B56507 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFEF2CD7986F00B56507 /* AlbumCollectionViewCell.swift */; };
 		E173BFF22CD7988F00B56507 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173BFF12CD7988F00B56507 /* AlbumViewController.swift */; };
 		E1FE5B632CE11B4400360B07 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE5B622CE11B4400360B07 /* NetworkManager.swift */; };
@@ -21,6 +21,7 @@
 		E1FE5B692CE11D5700360B07 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE5B682CE11D5700360B07 /* Album.swift */; };
 		E1FE5B6B2CE1231600360B07 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE5B6A2CE1231600360B07 /* ImageLoader.swift */; };
 		E1FE5B6D2CE124A200360B07 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE5B6C2CE124A200360B07 /* StorageManager.swift */; };
+		E1FE5B712CE513B400360B07 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE5B702CE513B400360B07 /* SearchHistoryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,7 @@
 		E173BFDD2CD77E7B00B56507 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E173BFE02CD77E7B00B56507 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E173BFE22CD77E7B00B56507 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E173BFED2CD7950C00B56507 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		E173BFED2CD7950C00B56507 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
 		E173BFEF2CD7986F00B56507 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		E173BFF12CD7988F00B56507 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		E1FE5B622CE11B4400360B07 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -39,6 +40,7 @@
 		E1FE5B682CE11D5700360B07 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		E1FE5B6A2CE1231600360B07 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		E1FE5B6C2CE124A200360B07 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		E1FE5B702CE513B400360B07 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +79,13 @@
 				E173BFD82CD77E7A00B56507 /* SearchViewController.swift */,
 				E173BFEF2CD7986F00B56507 /* AlbumCollectionViewCell.swift */,
 				E173BFF12CD7988F00B56507 /* AlbumViewController.swift */,
-				E173BFED2CD7950C00B56507 /* HistoryViewController.swift */,
+				E173BFED2CD7950C00B56507 /* SearchHistoryViewController.swift */,
 				E1FE5B622CE11B4400360B07 /* NetworkManager.swift */,
 				E1FE5B642CE11B5F00360B07 /* NetworkError.swift */,
 				E1FE5B6A2CE1231600360B07 /* ImageLoader.swift */,
 				E1FE5B682CE11D5700360B07 /* Album.swift */,
 				E1FE5B6C2CE124A200360B07 /* StorageManager.swift */,
+				E1FE5B702CE513B400360B07 /* SearchHistoryManager.swift */,
 				E173BFDD2CD77E7B00B56507 /* Assets.xcassets */,
 				E173BFDF2CD77E7B00B56507 /* LaunchScreen.storyboard */,
 				E173BFE22CD77E7B00B56507 /* Info.plist */,
@@ -170,12 +173,13 @@
 				E1FE5B652CE11B5F00360B07 /* NetworkError.swift in Sources */,
 				E1FE5B6D2CE124A200360B07 /* StorageManager.swift in Sources */,
 				E1FE5B6B2CE1231600360B07 /* ImageLoader.swift in Sources */,
+				E1FE5B712CE513B400360B07 /* SearchHistoryManager.swift in Sources */,
 				E173BFD92CD77E7A00B56507 /* SearchViewController.swift in Sources */,
 				E173BFD52CD77E7A00B56507 /* AppDelegate.swift in Sources */,
 				E1FE5B632CE11B4400360B07 /* NetworkManager.swift in Sources */,
 				E1FE5B692CE11D5700360B07 /* Album.swift in Sources */,
 				E173BFD72CD77E7A00B56507 /* SceneDelegate.swift in Sources */,
-				E173BFEE2CD7950C00B56507 /* HistoryViewController.swift in Sources */,
+				E173BFEE2CD7950C00B56507 /* SearchHistoryViewController.swift in Sources */,
 				E173BFF22CD7988F00B56507 /* AlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
