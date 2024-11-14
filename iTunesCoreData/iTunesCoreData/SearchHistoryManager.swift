@@ -23,4 +23,8 @@ class SearchHistoryManager {
     func getSearchHistory() -> [String] {
         return UserDefaults.standard.array(forKey: historyKey) as? [String] ?? []
     }
+
+    func clearHistory() {
+        UserDefaults.standard.removeObject(forKey: historyKey)
+    }
 }

@@ -13,7 +13,6 @@ class SearchHistoryViewController: UIViewController {
         tableView.separatorStyle = .singleLine
         return tableView
     }()
-
     private let id = "cell"
     var searchHistory = [String]()
 
@@ -21,6 +20,10 @@ class SearchHistoryViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupViews()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateSearchHistory()
     }
 
@@ -43,7 +46,7 @@ class SearchHistoryViewController: UIViewController {
 
     func updateSearchHistory() {
         searchHistory = SearchHistoryManager.shared.getSearchHistory()
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
 }
 

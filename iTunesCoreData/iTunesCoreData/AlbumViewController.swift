@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 import SnapKit
 
-class AlbumViewController: UIViewController {
+final class AlbumViewController: UIViewController {
     var album: Album?
 
-    let albumImageView: UIImageView = {
+    private let albumImageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 15
         image.clipsToBounds = true
@@ -20,7 +20,7 @@ class AlbumViewController: UIViewController {
         return image
     }()
 
-    let albumNameLabel: UILabel = {
+    private let albumNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 3
@@ -28,10 +28,17 @@ class AlbumViewController: UIViewController {
         return label
     }()
 
-    let artistNameLabel: UILabel = {
+    private let artistNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .systemGray
+        return label
+    }()
+
+    private let collectionPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .systemOrange
         return label
     }()
 
@@ -45,6 +52,7 @@ class AlbumViewController: UIViewController {
         view.addSubview(albumImageView)
         view.addSubview(albumNameLabel)
         view.addSubview(artistNameLabel)
+        view.addSubview(collectionPriceLabel)
 
         albumImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -63,6 +71,11 @@ class AlbumViewController: UIViewController {
             make.top.equalTo(albumNameLabel.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
         }
+
+        collectionPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(artistNameLabel.snp.bottom).offset(5)
+            make.centerX.equalToSuperview()
+        }
     }
 
     private func setupAlbum() {
@@ -79,5 +92,6 @@ class AlbumViewController: UIViewController {
 
         albumNameLabel.text = album.collectionName
         artistNameLabel.text = album.artistName
+        collectionPriceLabel.text = "\(album.collectionPrice) $"
     }
 }

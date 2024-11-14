@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
@@ -64,23 +64,16 @@ class SearchViewController: UIViewController {
         NetworkManager.shared.fetchAlbums(albumName: term) { [weak self] result in
             switch result {
             case .success(let albums):
-                self?.albums = albums
+                self?.albums = albums.sorted { $0.collectionName < $1.collectionName }
                 print("Successfully loaded \(albums.count) albums.")
             case .failure(let error):
                 print("Failed to load images with error: \(error.localizedDescription)")
-                self?.showErrorAlert(message: error.localizedDescription)
             }
 
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
         }
-    }
-
-    func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error Fetching Albums", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
 }
 

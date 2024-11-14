@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-class AlbumCollectionViewCell: UICollectionViewCell {
+final class AlbumCollectionViewCell: UICollectionViewCell {
     static let id = "AlbumCollectionViewCell"
 
-    let albumImageView: UIImageView = {
+    private let albumImageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 15
         image.clipsToBounds = true
@@ -19,13 +19,13 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         return image
     }()
 
-    let albumNameLabel: UILabel = {
+    private let albumNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
 
-    let artistNameLabel: UILabel = {
+    private let artistNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .systemGray
