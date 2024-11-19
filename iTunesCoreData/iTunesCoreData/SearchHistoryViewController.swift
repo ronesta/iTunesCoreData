@@ -28,7 +28,7 @@ class SearchHistoryViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        title = "Search History"
+        title = "History"
     }
 
     private func setupViews() {
@@ -45,7 +45,7 @@ class SearchHistoryViewController: UIViewController {
     }
 
     func updateSearchHistory() {
-        searchHistory = SearchHistoryManager.shared.getSearchHistory()
+        searchHistory = CoreDataManager.shared.getSearchHistory()
         self.tableView.reloadData()
     }
 }

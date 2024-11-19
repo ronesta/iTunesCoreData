@@ -79,7 +79,7 @@ final class AlbumCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = true
     }
 
-    func configure(with album: Album, image: UIImage?) {
+    func configure(with album: AlbumModel, image: UIImage?) {
         albumImageView.image = image
         albumNameLabel.text = album.collectionName
         artistNameLabel.text = album.artistName

@@ -36,7 +36,7 @@ final class SearchViewController: UIViewController {
         return collectionView
     }()
 
-    var albums = [Album]()
+    var albums = [AlbumModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,16 +61,46 @@ final class SearchViewController: UIViewController {
     }
 
     func searchAlbums(with term: String) {
-        NetworkManager.shared.fetchAlbums(albumName: term) { [weak self] result in
-            switch result {
-            case .success(let albums):
-                self?.albums = albums.sorted { $0.collectionName < $1.collectionName }
-                print("Successfully loaded \(albums.count) albums.")
-            case .failure(let error):
-                print("Failed to load images with error: \(error.localizedDescription)")
+        self.albums = CoreDataManager.shared.fetchAlbums(for: term)
+
+        guard self.albums.isEmpty else {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            return
+        }
+
+        NetworkManager.shared.fetchAlbums(albumName: term) { [weak self] result, error in
+            if let error {
+                print("Error getting albums: \(error)")
+                return
             }
 
+            guard let result else {
+                return
+            }
+
+            var albumsToSave: [(album: Album, imageData: Data)] = []
+
+            result.forEach { res in
+                guard let url = URL(string: res.artworkUrl100) else {
+                    print("Invalid URL for album image")
+                    return
+                }
+
+                do {
+                    let imageData = try Data(contentsOf: url)
+                    albumsToSave.append((album: res, imageData: imageData))
+                } catch {
+                    print("Failed to load image data: \(error)")
+                }
+            }
+
+            CoreDataManager.shared.saveAlbums(albumsToSave, for: term)
+            print("Successfully loaded \(albumsToSave.count) albums.")
+
             DispatchQueue.main.async {
+                self?.albums = CoreDataManager.shared.fetchAlbums(for: term)
                 self?.collectionView.reloadData()
             }
         }
@@ -93,16 +123,13 @@ extension SearchViewController: UICollectionViewDataSource {
         }
 
         let album = albums[indexPath.item]
-        let UrlString = album.artworkUrl100
 
-        ImageLoader.shared.loadImage(from: UrlString) { loadedImage in
-            DispatchQueue.main.async {
-                guard let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell  else {
-                    return
-                }
-                cell.configure(with: album, image: loadedImage)
-            }
+        guard let imageData = CoreDataManager.shared.fetchImageData(forImageId: Int(album.artistId)),
+              let image = UIImage(data: imageData) else {
+            return cell
         }
+
+        cell.configure(with: album, image: image)
         return cell
     }
 }
@@ -125,7 +152,7 @@ extension SearchViewController: UISearchBarDelegate {
         guard let searchTerm = searchBar.text, !searchTerm.isEmpty else {
             return
         }
-        SearchHistoryManager.shared.saveSearchTerm(searchTerm)
+        CoreDataManager.shared.saveSearchTerm(searchTerm)
         searchAlbums(with: searchTerm)
     }
 }
