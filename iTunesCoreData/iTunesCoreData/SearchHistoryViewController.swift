@@ -7,12 +7,13 @@
 
 import UIKit
 
-class SearchHistoryViewController: UIViewController {
+final class SearchHistoryViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .singleLine
         return tableView
     }()
+
     private let id = "cell"
     var searchHistory = [String]()
 
@@ -50,6 +51,7 @@ class SearchHistoryViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension SearchHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         searchHistory.count
@@ -62,6 +64,7 @@ extension SearchHistoryViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension SearchHistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class CoreDataManager {
+final class CoreDataManager {
     static let shared = CoreDataManager()
 
     private init() {}
@@ -37,6 +37,7 @@ class CoreDataManager {
         }
     }
 
+    // swiftlint:disable:next function_parameter_count
     public func createOrUpdateAlbum(artistId: Int,
                                     artistName: String,
                                     collectionName: String,
@@ -54,10 +55,9 @@ class CoreDataManager {
                 album = existingAlbum
             } else {
                 album = AlbumModel(context: context)
-                album.artistId = Int64(artistId) //?
+                album.artistId = Int64(artistId)
             }
 
-            //album.artistId = Int64(artistId)
             album.artistName = artistName
             album.collectionName = collectionName
             album.artworkUrl100 = artworkUrl100
@@ -111,7 +111,7 @@ class CoreDataManager {
         }
         return []
     }
-    
+
     func fetchImageData(forImageId id: Int) -> Data? {
         let fetchRequest = NSFetchRequest<AlbumModel>(entityName: "AlbumModel")
         fetchRequest.predicate = NSPredicate(format: "artistId == %d", id)
